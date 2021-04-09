@@ -15,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import com.coverity.security.Escape;
 
 /**
  *
@@ -52,7 +53,8 @@ public class AddPage extends HttpServlet {
                     BufferedWriter bw=new BufferedWriter(new FileWriter(f.getAbsoluteFile()));
                     bw.write(content);
                     bw.close();
-                    out.print("Successfully created the file: <a href='../pages/"+fileName+"'>"+fileName+"</a>");
+                    String escaped = Escape.html(fileName)
+                    out.print("Successfully created the file: <a href='../pages/"+escaped+"'>"+escaped+"</a>");
                 }
                 else
                 {
